@@ -2,4 +2,4 @@ if not status is-interactive
     exit
 end
 
-__fishmak_configure_bindings
+fish_vi_colemak_key_bindings

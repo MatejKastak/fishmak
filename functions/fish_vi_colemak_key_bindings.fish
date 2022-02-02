@@ -1,4 +1,4 @@
-function __fishmak_configure_bindings --description "Install the default key bindings."
+function fish_vi_colemak_key_bindings --description "Install the default key bindings."
     if contains -- -h $argv
         or contains -- --help $argv
         echo "Sorry but this function doesn't support -h or --help"
@@ -20,13 +20,13 @@ function __fishmak_configure_bindings --description "Install the default key bin
     # Allow just calling this function to correctly set the bindings.
     # Because it's a rather discoverable name, users will execute it
     # and without this would then have subtly broken bindings.
-    if test "$fish_key_bindings" != __fishmak_configure_bindings
+    if test "$fish_key_bindings" != fish_vi_colemak_key_bindings
         and test "$rebind" = true
         # Allow the user to set the variable universally.
         set -q fish_key_bindings
         # This triggers the handler, which calls us again and ensures the user_key_bindings
         # are executed.
-        set fish_key_bindings __fishmak_configure_bindings
+        set fish_key_bindings fish_vi_colemak_key_bindings
         return
     end
 
