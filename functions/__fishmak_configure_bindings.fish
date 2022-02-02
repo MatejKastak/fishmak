@@ -290,6 +290,8 @@ function __fishmak_configure_bindings --description "Install the default key bin
 
     set fish_bind_mode $init_mode
 
+    bind \cA -M insert beginning-of-line
+    bind \cA beginning-of-line
     bind \cF -M insert end-of-line
     bind \cF end-of-line
     bind \cT -M insert accept-autosuggestion
