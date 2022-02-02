@@ -334,6 +334,12 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset \cP _fzf-multi-command-history-widget
     bind -s --preset \; -M insert up-or-search
     bind -s --preset \; up-or-search
+    bind -s --preset \ck -M insert down-or-search
+    bind -s --preset \ck down-or-search
+    bind -s --preset \ce -M insert up-or-search
+    bind -s --preset \ce up-or-search
+    bind -s --preset \cn -M insert down-or-search
+    bind -s --preset \cn down-or-search
 
     # For some reason someone unbinds our enter key up to this point
     # Make sure we can execute commands here
