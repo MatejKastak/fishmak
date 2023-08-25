@@ -73,7 +73,6 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset -M insert \e "if commandline -P; commandline -f cancel; else; set fish_bind_mode default; commandline -f backward-char repaint-mode; end"
 
     # Default (command) mode
-    bind -s --preset :q exit
     bind -s --preset -m insert \cc cancel-commandline repaint-mode
     bind -s --preset -M default m backward-char
     bind -s --preset -M default i forward-char
@@ -85,7 +84,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset -m insert U beginning-of-line repaint-mode
     bind -s --preset -m insert a forward-single-char repaint-mode
     bind -s --preset -m insert A end-of-line repaint-mode
-    bind -s --preset -m visual d begin-selection repaintmode
+    bind -s --preset -m visual v begin-selection repaintmode
 
     #bind -s -m insert o "commandline -a \n" down-line repaint-mode
     #bind -s -m insert O beginning-of-line "commandline -i \n" up-line repaint-mode # doesn't work
@@ -108,8 +107,8 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
 
     bind -s --preset e up-or-search
     bind -s --preset n down-or-search
-    bind -s --preset v backward-word
-    bind -s --preset V backward-bigword
+    bind -s --preset z backward-word
+    bind -s --preset Z backward-bigword
     bind -s --preset gf backward-word
     bind -s --preset gF backward-bigword
     bind -s --preset w forward-word forward-single-char
@@ -126,8 +125,8 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     # Vi moves the cursor back if, after deleting, it is at EOL.
     # To emulate that, move forward, then backward, which will be a NOP
     # if there is something to move forward to.
-    bind -s --preset -M default x delete-char forward-single-char backward-char
-    bind -s --preset -M default X backward-delete-char
+    bind -s --preset -M default c delete-char forward-single-char backward-char
+    bind -s --preset -M default C backward-delete-char
     bind -s --preset -M insert -k sc delete-char forward-single-char backward-char
     bind -s --preset -M default -k sc delete-char forward-single-char backward-char
 
@@ -171,31 +170,31 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
 
     bind -s --preset -m insert r delete-char repaint-mode
     bind -s --preset -m insert r kill-whole-line repaint-mode
-    bind -s --preset -m insert cc kill-whole-line repaint-mode
-    bind -s --preset -m insert C kill-line repaint-mode
-    bind -s --preset -m insert c\$ kill-line repaint-mode
-    bind -s --preset -m insert c\^ backward-kill-line repaint-mode
-    bind -s --preset -m insert c0 backward-kill-line repaint-mode
-    bind -s --preset -m insert cw kill-word repaint-mode
-    bind -s --preset -m insert cW kill-bigword repaint-mode
-    bind -s --preset -m insert cuw forward-single-char forward-single-char backward-word kill-word repaint-mode
-    bind -s --preset -m insert cuW forward-single-char forward-single-char backward-bigword kill-bigword repaint-mode
-    bind -s --preset -m insert caw forward-single-char forward-single-char backward-word kill-word repaint-mode
-    bind -s --preset -m insert caW forward-single-char forward-single-char backward-bigword kill-bigword repaint-mode
-    bind -s --preset -m insert cf kill-word repaint-mode
-    bind -s --preset -m insert cF kill-bigword repaint-mode
-    bind -s --preset -m insert cv backward-kill-word repaint-mode
-    bind -s --preset -m insert cV backward-kill-bigword repaint-mode
-    bind -s --preset -m insert cgf backward-kill-word repaint-mode
-    bind -s --preset -m insert cgF backward-kill-bigword repaint-mode
-    bind -s --preset -m insert ct begin-selection forward-jump kill-selection end-selection repaint-mode
-    bind -s --preset -m insert cb begin-selection forward-jump backward-char kill-selection end-selection repaint-mode
-    bind -s --preset -m insert cT begin-selection backward-jump kill-selection end-selection repaint-mode
-    bind -s --preset -m insert cB begin-selection backward-jump forward-single-char kill-selection end-selection repaint-mode
-    bind -s --preset -m insert cm backward-char begin-selection kill-selection end-selection repaint-mode
-    bind -s --preset -m insert ci begin-selection kill-selection end-selection repaint-mode
-    bind -s --preset -m insert cu backward-jump-till and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection repaint-mode
-    bind -s --preset -m insert ca backward-jump and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection repaint-mode
+    bind -s --preset -m insert dd kill-whole-line repaint-mode
+    bind -s --preset -m insert D kill-line repaint-mode
+    bind -s --preset -m insert d\$ kill-line repaint-mode
+    bind -s --preset -m insert d\^ backward-kill-line repaint-mode
+    bind -s --preset -m insert d0 backward-kill-line repaint-mode
+    bind -s --preset -m insert dw kill-word repaint-mode
+    bind -s --preset -m insert dW kill-bigword repaint-mode
+    bind -s --preset -m insert duw forward-single-char forward-single-char backward-word kill-word repaint-mode
+    bind -s --preset -m insert duW forward-single-char forward-single-char backward-bigword kill-bigword repaint-mode
+    bind -s --preset -m insert daw forward-single-char forward-single-char backward-word kill-word repaint-mode
+    bind -s --preset -m insert daW forward-single-char forward-single-char backward-bigword kill-bigword repaint-mode
+    bind -s --preset -m insert df kill-word repaint-mode
+    bind -s --preset -m insert dF kill-bigword repaint-mode
+    bind -s --preset -m insert dv backward-kill-word repaint-mode
+    bind -s --preset -m insert dV backward-kill-bigword repaint-mode
+    bind -s --preset -m insert dgf backward-kill-word repaint-mode
+    bind -s --preset -m insert dgF backward-kill-bigword repaint-mode
+    bind -s --preset -m insert dt begin-selection forward-jump kill-selection end-selection repaint-mode
+    bind -s --preset -m insert db begin-selection forward-jump backward-char kill-selection end-selection repaint-mode
+    bind -s --preset -m insert dT begin-selection backward-jump kill-selection end-selection repaint-mode
+    bind -s --preset -m insert dB begin-selection backward-jump forward-single-char kill-selection end-selection repaint-mode
+    bind -s --preset -m insert dm backward-char begin-selection kill-selection end-selection repaint-mode
+    bind -s --preset -m insert di begin-selection kill-selection end-selection repaint-mode
+    bind -s --preset -m insert du backward-jump-till and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection repaint-mode
+    bind -s --preset -m insert da backward-jump and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection repaint-mode
 
     bind -s --preset '~' togglecase-char forward-single-char
     bind -s --preset gl downcase-word
@@ -277,8 +276,8 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset -M visual e up-line
     bind -s --preset -M visual n down-line
 
-    bind -s --preset -M visual v backward-word
-    bind -s --preset -M visual V backward-bigword
+    bind -s --preset -M visual z backward-word
+    bind -s --preset -M visual Z backward-bigword
     bind -s --preset -M visual gf backward-word
     bind -s --preset -M visual gF backward-bigword
     bind -s --preset -M visual w forward-word
@@ -299,11 +298,11 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
         bind -s --preset -M visual $key beginning-of-line
     end
 
-    bind -s --preset -M visual -m insert c kill-selection end-selection repaint-mode
+    bind -s --preset -M visual -m insert d kill-selection end-selection repaint-mode
     bind -s --preset -M visual -m insert r kill-selection end-selection repaint-mode
     bind -s --preset -M visual -m default s kill-selection end-selection repaint-mode
-    bind -s --preset -M visual -m default x kill-selection end-selection repaint-mode
-    bind -s --preset -M visual -m default X kill-whole-line end-selection repaint-mode
+    bind -s --preset -M visual -m default c kill-selection end-selection repaint-mode
+    bind -s --preset -M visual -m default C kill-whole-line end-selection repaint-mode
     bind -s --preset -M visual -m default j kill-selection yank end-selection repaint-mode
     bind -s --preset -M visual -m default '"*j' "fish_clipboard_copy; commandline -f end-selection repaint-mode"
     bind -s --preset -M visual -m default '~' togglecase-selection end-selection repaint-mode
@@ -332,8 +331,6 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset \cT accept-autosuggestion
     bind -s --preset \cP -M insert _fzf-multi-command-history-widget
     bind -s --preset \cP _fzf-multi-command-history-widget
-    bind -s --preset \; -M insert up-or-search
-    bind -s --preset \; up-or-search
     bind -s --preset \ck -M insert down-or-search
     bind -s --preset \ck down-or-search
     bind -s --preset \ce -M insert up-or-search
