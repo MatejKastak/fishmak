@@ -342,6 +342,8 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     # Make sure we can execute commands here
     bind -s --preset -M insert \r execute
     bind -s --preset -M insert \n execute
+    bind -s --preset -m insert \r execute
+    bind -s --preset -m insert \n execute
 end
 
 function __fishmak_shared_key_bindings -d "Bindings shared between emacs and vi mode"
