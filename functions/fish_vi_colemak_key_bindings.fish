@@ -329,8 +329,8 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset \cF end-of-line
     bind -s --preset \cT -M insert accept-autosuggestion
     bind -s --preset \cT accept-autosuggestion
-    bind -s --preset \cP -M insert _fzf-multi-command-history-widget
-    bind -s --preset \cP _fzf-multi-command-history-widget
+    bind -s --preset \cP -M insert fzf-history-widget
+    bind -s --preset \cP fzf-history-widget
     bind -s --preset \ck -M insert down-or-search
     bind -s --preset \ck down-or-search
     bind -s --preset \ce -M insert up-or-search
