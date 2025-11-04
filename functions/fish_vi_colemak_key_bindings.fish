@@ -65,7 +65,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     # Closing a command substitution expands abbreviations
     bind -s --preset -M insert ")" self-insert expand-abbr
     # Ctrl-space inserts space without expanding abbrs
-    bind -s --preset -M insert -k nul 'commandline -i " "'
+    bind -s --preset -M insert nul 'commandline -i " "'
 
     # Add a way to switch from insert to normal (command) mode.
     # Note if we are paging, we want to stay in insert mode
@@ -117,28 +117,28 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset F forward-bigword backward-char
 
     # Vi/Vim doesn't support these keys in insert mode but that seems silly so we do so anyway.
-    bind -s --preset -M insert -k home beginning-of-line
-    bind -s --preset -M default -k home beginning-of-line
-    bind -s --preset -M insert -k end end-of-line
-    bind -s --preset -M default -k end end-of-line
+    bind -s --preset -M insert home beginning-of-line
+    bind -s --preset -M default home beginning-of-line
+    bind -s --preset -M insert end end-of-line
+    bind -s --preset -M default end end-of-line
 
     # Vi moves the cursor back if, after deleting, it is at EOL.
     # To emulate that, move forward, then backward, which will be a NOP
     # if there is something to move forward to.
     bind -s --preset -M default c delete-char forward-single-char backward-char
     bind -s --preset -M default C backward-delete-char
-    bind -s --preset -M insert -k sc delete-char forward-single-char backward-char
-    bind -s --preset -M default -k sc delete-char forward-single-char backward-char
+    bind -s --preset -M insert sc delete-char forward-single-char backward-char
+    bind -s --preset -M default sc delete-char forward-single-char backward-char
 
     # Backspace deletes a char in insert mode, but not in normal/default mode.
-    bind -s --preset -M insert -k backspace backward-delete-char
-    bind -s --preset -M default -k backspace backward-char
+    bind -s --preset -M insert backspace backward-delete-char
+    bind -s --preset -M default backspace backward-char
     bind -s --preset -M insert \cm backward-delete-char
     bind -s --preset -M default \cm backward-char
     bind -s --preset -M insert \x7f backward-delete-char
     bind -s --preset -M default \x7f backward-char
-    bind -s --preset -M insert -k sdc backward-delete-char # shifted delete
-    bind -s --preset -M default -k sdc backward-delete-char # shifted delete
+    bind -s --preset -M insert sdc backward-delete-char # shifted delete
+    bind -s --preset -M default sdc backward-delete-char # shifted delete
 
     bind -s --preset ss kill-whole-line
     bind -s --preset S kill-line
@@ -165,8 +165,6 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset si delete-char
     bind -s --preset su backward-jump-till and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection
     bind -s --preset sa backward-jump and repeat-jump-reverse and begin-selection repeat-jump kill-selection end-selection
-    bind -s --preset 's;' begin-selection repeat-jump kill-selection end-selection
-    bind -s --preset 's,' begin-selection repeat-jump-reverse kill-selection end-selection
 
     bind -s --preset -m insert r delete-char repaint-mode
     bind -s --preset -m insert r kill-whole-line repaint-mode
@@ -265,7 +263,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset -M replace -m default \e cancel repaint-mode
     # in vim (and maybe in vi), <BS> deletes the changes
     # but this binding just move cursor backward, not delete the changes
-    bind -s --preset -M replace -k backspace backward-char
+    bind -s --preset -M replace backspace backward-char
 
     #
     # visual mode
@@ -362,8 +360,8 @@ function __fishmak_shared_key_bindings -d "Bindings shared between emacs and vi 
     bind --preset --preset $argv \ey yank-pop
 
     # Left/Right arrow
-    bind --preset --preset $argv -k right forward-char
-    bind --preset --preset $argv -k left backward-char
+    bind --preset --preset $argv right forward-char
+    bind --preset --preset $argv left backward-char
     bind --preset --preset $argv \e\[C forward-char
     bind --preset --preset $argv \e\[D backward-char
     # Some terminals output these when they're in in keypad mode.
@@ -374,8 +372,8 @@ function __fishmak_shared_key_bindings -d "Bindings shared between emacs and vi 
     bind --preset --preset $argv \e\[1\;5C forward-word
     bind --preset --preset $argv \e\[1\;5D backward-word
 
-    bind --preset --preset $argv -k ppage beginning-of-history
-    bind --preset --preset $argv -k npage end-of-history
+    bind --preset --preset $argv pagedown beginning-of-history
+    bind --preset --preset $argv pageup end-of-history
 
     # Interaction with the system clipboard.
     bind --preset --preset $argv \cx fish_clipboard_copy
@@ -385,20 +383,20 @@ function __fishmak_shared_key_bindings -d "Bindings shared between emacs and vi 
     bind --preset --preset $argv \t complete
     bind --preset --preset $argv \cs pager-toggle-search
     # shift-tab does a tab complete followed by a search.
-    bind --preset --preset $argv --key btab complete-and-search
+    bind --preset --preset $argv shift-tab complete-and-search
 
     bind --preset --preset $argv \e\n "commandline -f expand-abbr; commandline -i \n"
     bind --preset --preset $argv \e\r "commandline -f expand-abbr; commandline -i \n"
 
-    bind --preset --preset $argv -k down down-or-search
-    bind --preset --preset $argv -k up up-or-search
+    bind --preset --preset $argv down down-or-search
+    bind --preset --preset $argv up up-or-search
     bind --preset --preset $argv \e\[A up-or-search
     bind --preset --preset $argv \e\[B down-or-search
     bind --preset --preset $argv \eOA up-or-search
     bind --preset --preset $argv \eOB down-or-search
 
-    bind --preset --preset $argv -k sright forward-bigword
-    bind --preset --preset $argv -k sleft backward-bigword
+    bind --preset --preset $argv shift-right forward-bigword
+    bind --preset --preset $argv shift-left backward-bigword
 
     # Alt-left/Alt-right
     bind --preset --preset $argv \e\eOC nextd-or-forward-word
@@ -449,7 +447,7 @@ function __fishmak_shared_key_bindings -d "Bindings shared between emacs and vi 
     bind --preset --preset $argv \es "fish_commandline_prepend sudo"
 
     # Allow reading manpages by pressing F1 (many GUI applications) or Alt+h (like in zsh).
-    bind --preset --preset $argv -k f1 __fish_man_page
+    bind --preset --preset $argv f1 __fish_man_page
     bind --preset --preset $argv \eh __fish_man_page
 
     # This will make sure the output of the current command is paged using the default pager when
