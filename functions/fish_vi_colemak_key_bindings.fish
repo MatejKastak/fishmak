@@ -65,7 +65,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     # Closing a command substitution expands abbreviations
     bind -s --preset -M insert ")" self-insert expand-abbr
     # Ctrl-space inserts space without expanding abbrs
-    bind -s --preset -M insert nul 'commandline -i " "'
+    # bind -s --preset -M insert nul 'commandline -i " "'
 
     # Add a way to switch from insert to normal (command) mode.
     # Note if we are paging, we want to stay in insert mode
@@ -127,7 +127,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     # if there is something to move forward to.
     bind -s --preset -M default c delete-char forward-single-char backward-char
     bind -s --preset -M default C backward-delete-char
-    bind -s --preset -M insert sc delete-char forward-single-char backward-char
+    # bind -s --preset -M insert sc delete-char forward-single-char backward-char
     bind -s --preset -M default sc delete-char forward-single-char backward-char
 
     # Backspace deletes a char in insert mode, but not in normal/default mode.
@@ -137,7 +137,7 @@ function fish_vi_colemak_key_bindings --description "Install the default key bin
     bind -s --preset -M default \cm backward-char
     bind -s --preset -M insert \x7f backward-delete-char
     bind -s --preset -M default \x7f backward-char
-    bind -s --preset -M insert sdc backward-delete-char # shifted delete
+    # bind -s --preset -M insert sdc backward-delete-char # shifted delete
     bind -s --preset -M default sdc backward-delete-char # shifted delete
 
     bind -s --preset ss kill-whole-line
